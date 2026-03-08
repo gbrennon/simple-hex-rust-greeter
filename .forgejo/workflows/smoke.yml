@@ -8,8 +8,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "✅ Push on branch ${{ github.ref_name }} (sha ${{ github.sha }})"
+      - name: Install Rust toolchain
+        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
       - name: Run tests
-        run: cargo test --verbose
+        run: |
+          . "$HOME/.cargo/env"
+          cargo test --verbose
 
   merge-to-main:
     name: "CI — merge to main only"
@@ -18,5 +22,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "✅ Merged to main — sha ${{ github.sha }}"
+      - name: Install Rust toolchain
+        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
       - name: Run tests on main
-        run: cargo test --verbose
+        run: |
+          . "$HOME/.cargo/env"
+          cargo test --verbose
