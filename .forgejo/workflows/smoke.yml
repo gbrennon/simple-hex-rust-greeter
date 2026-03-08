@@ -1,6 +1,18 @@
-on: [push]
+on:
+  push:
+
 jobs:
-  smoke:
-    runs-on: ubuntu-latest   # matches label registered in bootstrap.sh
+  ci:
+    name: "CI — every push"
+    runs-on: ubuntu-latest
     steps:
-      - run: echo "Runner is working"
+      - uses: actions/checkout@v4
+      - run: echo "✅ Push on branch ${{ github.ref_name }} (sha ${{ github.sha }})"
+
+  merge-to-main:
+    name: "CI — merge to main only"
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "✅ Merged to main — sha ${{ github.sha }}"
