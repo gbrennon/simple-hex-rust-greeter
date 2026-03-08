@@ -21,4 +21,9 @@ mod tests {
     fn greet_uses_provided_name() {
         assert_eq!(greet("Forgejo"), "Hello, Forgejo!");
     }
+
+    #[test]
+    fn greet_uses_provided_rustoceans() {
+        assert_eq!(greet("Forgejo"), "Hello, Forgejo!");
+    }
 }
