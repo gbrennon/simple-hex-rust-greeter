@@ -5,6 +5,7 @@ fn greet(name: &str) -> String {
 fn main() {
     println!("{}", greet("world"));
     println!("{}", greet("Forgejo"));
+    println!("{}", greet("Rustaceans"));
 }
 
 #[cfg(test)]
