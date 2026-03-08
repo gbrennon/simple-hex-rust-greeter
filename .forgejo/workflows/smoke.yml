@@ -8,6 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "✅ Push on branch ${{ github.ref_name }} (sha ${{ github.sha }})"
+      - name: Run tests
+        run: cargo test --verbose
 
   merge-to-main:
     name: "CI — merge to main only"
@@ -16,3 +18,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "✅ Merged to main — sha ${{ github.sha }}"
+      - name: Run tests on main
+        run: cargo test --verbose
