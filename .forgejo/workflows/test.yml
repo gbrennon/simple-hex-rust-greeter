@@ -1,3 +1,5 @@
+name: "Test in CI"
+
 on:
   push:
 
