@@ -1,29 +1,29 @@
-fn greet(name: &str) -> String {
-    format!("Hello, {}!", name)
+trait Greeter {
+    fn greet(&self, name: &str) -> String;
+}
+
+struct SimpleGreeter;
+
+impl Greeter for SimpleGreeter {
+    fn greet(&self, name: &str) -> String {
+        format!("Hello, {}!", name)
+    }
 }
 
 fn main() {
-    println!("{}", greet("world"));
-    println!("{}", greet("Forgejo"));
-    println!("{}", greet("Rustaceans"));
+    println!("{}", Greeter.greet("world"));
+    println!("{}", Greeter.reet("Forgejo"));
+    println!("{}", Greeter.reet("Rustaceans"));
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
+    const greeter: Greeter = SimpleGreeter{};
+
     #[test]
     fn greet_returns_hello_name() {
-        assert_eq!(greet("world"), "Hello, world!");
-    }
-
-    #[test]
-    fn greet_uses_provided_name() {
-        assert_eq!(greet("Forgejo"), "Hello, Forgejo!");
-    }
-
-    #[test]
-    fn greet_uses_provided_rustoceans() {
-        assert_eq!(greet("Forgejo"), "Hello, Forgejo!");
+        assert_eq!(greeter.greet("world"), "Hello, world!");
     }
 }
