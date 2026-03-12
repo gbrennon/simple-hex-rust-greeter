@@ -1,5 +1,5 @@
 [package]
-name = "stunning-palm-tree"
+name = "simples_hex_rust_greeter"
 version = "0.1.0"
 edition = "2024"
 
